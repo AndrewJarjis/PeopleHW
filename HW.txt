@@ -1,0 +1,98 @@
+1.db.people.insertOne({
+  "name": "John Doe",
+  "birthdate": new Date("1980-01-01"),
+  "gender": "Male",
+  "occupation": "Teacher",
+  "nationality": "American",
+  "marital_status": "Single",
+  "spouse_name": null,
+  "children": []
+})
+
+
+2.db.people.insertOne({
+  "name": "Jane Smith",
+  "birthdate": new Date("1990-05-15"),
+  "gender": "Female",
+  "occupation": "Doctor",
+  "nationality": "Canadian",
+  "marital_status": "Married",
+  "spouse_name": "David Smith",
+  "children": [
+    {
+      "name": "Emma Smith",
+      "birthdate": new Date("2015-06-01"),
+      "gender": "Female"
+    },
+    {
+      "name": "Noah Smith",
+      "birthdate": new Date("2017-10-22"),
+      "gender": "Male"
+    }
+  ]
+})
+
+
+3.db.people.updateOne(
+  { "name": "Clarence" },
+  { "$set": { "address.state": "South Dakota" } }
+)
+
+
+4.db.people.updateOne(
+  { "name": "Rebecca Hayes" },
+  { "$set": { "email": null } }
+)
+
+
+5.db.people.updateMany(
+  { "state": "Missouri" },
+  { "$inc": { "age": 1 } }
+)
+
+
+
+
+6.db.people.replaceOne(
+  { "first_name": "Jerry", "last_name": "Baker" },
+  {
+    "first_name": "Jerry",
+    "last_name": "Baker-Mendez",
+    "email": "jerry@classic.ly",
+    "gender": "Male",
+    "age": 28,
+    "address": { "state": "Vermont" },
+    "children": [
+      { "name": "Alan", "age": 18 },
+      { "name": "Jenny", "age": 3 }
+    ]
+  }
+)
+7.db.people.deleteOne({ "first_name": "Wanda", "last_name": "Bowman" })
+
+8.db.people.deleteMany({ "email": { $exists: false } })
+
+9.
+
+
+
+
+
+
+10.db.submissions.updateOne(
+  { "title": "The River Bend" },
+  { "$inc": { "upvotes": 2 } }
+)
+11.db.submissions.updateMany(
+  { "upvotes": { "$gte": 10 } },
+  { "$set": { "round2": true } }
+)
+12.db.people.updateOne(
+  { "first_name": "Helen", "last_name": "Clark" },
+  { "$set": { "children.1": { "name": "Melanie", "age": 0 } } }
+)
+13.db.people.updateOne(
+  { "first_name": "Joan", "last_name": "Bishop", "children.name": "Catherine" },
+  { "$set": { "children.$.name": "Cat" }, "$inc": { "children.$.age": 1 } }
+)
+14.db.submissions.find({ "downvotes": { "$gt": "upvotes" } })
